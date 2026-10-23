@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taxis Los Altos — Tu taxi local en Tetela del Volcán</title>
+<meta name="description" content="Pide un taxi en Tetela del Volcán desde tu celular. Ve tu tarifa antes de pedir, sigue a tu chofer en el mapa y paga en efectivo.">
+<meta name="theme-color" content="#EF9D15">
+<meta property="og:title" content="Taxis Los Altos">
+<meta property="og:description" content="Tu taxi local en Tetela del Volcán, Morelos. Tarifa clara antes de pedir y pago en efectivo.">
+<meta property="og:image" content="assets/logo.png">
+<link rel="icon" href="assets/mark.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #EF9D15;
+    --orange-deep: #D88A0B;
+    --ink: #1B1B1D;
+    --ink-2: #3A3A3E;
+    --copper: #B8673A;
+    --cream: #FFF7EA;
+    --paper: #FFFFFF;
+    --muted: #6B6660;
+    --line: #EADFCB;
+    --chip: #FBEBD0;
+    --radius: 16px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #F4EFE7; --ink-2: #D8D1C6; --cream: #141313; --paper: #1E1D1C;
+      --muted: #A39C92; --line: #34302B; --chip: #2B2722; --copper: #D98A5C;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--cream); color: var(--ink);
+    font: 400 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .brand { font-family: Montserrat, Inter, sans-serif; letter-spacing: -0.01em; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* Nav */
+  header.nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--cream) 88%, transparent);
+    backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  header.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; text-decoration: none; font-size: 17px; }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; }
+  nav.links { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
+  nav.links a { text-decoration: none; color: var(--ink-2); }
+  nav.links a:hover { color: var(--ink); }
+  @media (max-width: 680px) { nav.links { display: none; } }
+
+  /* Hero */
+  .hero { background: var(--orange); color: #1B1B1D; overflow: hidden; }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; padding-top: 56px; padding-bottom: 64px; }
+  .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    background: rgba(27,27,29,0.1); padding: 6px 12px; border-radius: 999px; }
+  .hero h1 { font-size: clamp(34px, 5.4vw, 58px); line-height: 1.05; margin: 18px 0 16px; font-weight: 800; }
+  .hero p.lead { font-size: 18px; max-width: 34ch; margin: 0 0 28px; color: #2B2620; }
+  .hero-logo { width: 100%; max-width: 420px; justify-self: center; filter: drop-shadow(0 18px 30px rgba(0,0,0,0.18)); }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; font: 600 16px Montserrat, sans-serif; text-decoration: none;
+    padding: 14px 22px; border-radius: 12px; border: 0; cursor: pointer; }
+  .btn-dark { background: #1B1B1D; color: #fff; }
+  .btn-dark:hover { background: #000; }
+  .btn-ghost { background: transparent; color: #1B1B1D; box-shadow: inset 0 0 0 2px rgba(27,27,29,0.75); }
+  .btn[aria-disabled="true"] { opacity: 0.55; cursor: default; }
+  .note { font-size: 13px; color: #3B342B; margin-top: 12px; }
+  @media (max-width: 820px) {
+    .hero .wrap { grid-template-columns: 1fr; padding-top: 36px; padding-bottom: 44px; gap: 24px; }
+    .hero-logo { max-width: 260px; order: -1; }
+  }
+
+  /* Sections */
+  section { padding: 72px 0; }
+  section.alt { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .section-head { max-width: 640px; margin-bottom: 36px; }
+  .section-head h2 { font-size: clamp(26px, 3.4vw, 36px); margin: 0 0 10px; font-weight: 800; }
+  .section-head p { margin: 0; color: var(--muted); font-size: 17px; }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: s; }
+  .step { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; position: relative; }
+  section.alt .step { background: var(--cream); }
+  .step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 34px; height: 34px;
+    border-radius: 10px; background: var(--orange); color: #1B1B1D; font: 800 16px Montserrat, sans-serif; margin-bottom: 14px; }
+  .step h3 { margin: 0 0 6px; font-size: 17px; }
+  .step p { margin: 0; color: var(--muted); font-size: 15px; }
+  @media (max-width: 900px) { .steps { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+  .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  .card h3 { margin: 0 0 14px; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+  .card h3 .tag { font: 600 12px Inter, sans-serif; background: var(--chip); color: var(--copper); padding: 4px 10px; border-radius: 999px; }
+  ul.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  ul.checks li { padding-left: 28px; position: relative; color: var(--ink-2); }
+  ul.checks li::before { content: ""; position: absolute; left: 0; top: 7px; width: 16px; height: 10px;
+    border-left: 3px solid var(--orange); border-bottom: 3px solid var(--orange); transform: rotate(-45deg); }
+
+  /* Tarifas */
+  .rule { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+  .rule .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+  .rule .cell b { display: block; font: 800 26px Montserrat, sans-serif; }
+  .rule .cell span { color: var(--muted); font-size: 14px; }
+  @media (max-width: 760px) { .rule { grid-template-columns: 1fr 1fr; } }
+
+  .tools { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px; }
+  .search { flex: 1 1 260px; display: flex; align-items: center; gap: 10px; background: var(--paper); border: 1px solid var(--line);
+    border-radius: 12px; padding: 0 14px; height: 48px; }
+  .search input { flex: 1; border: 0; outline: 0; background: transparent; font: 500 16px Inter, sans-serif; color: var(--ink); min-width: 0; }
+  .search:focus-within { border-color: var(--orange); box-shadow: 0 0 0 3px color-mix(in srgb, var(--orange) 25%, transparent); }
+  .tabs { display: inline-flex; background: var(--chip); border-radius: 12px; padding: 4px; }
+  .tabs button { border: 0; background: transparent; font: 600 14px Inter, sans-serif; color: var(--ink-2); padding: 9px 14px; border-radius: 9px; cursor: pointer; }
+  .tabs button[aria-pressed="true"] { background: var(--paper); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+
+  .table { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .row { display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center; padding: 13px 18px; border-top: 1px solid var(--line); }
+  .row:first-child { border-top: 0; }
+  .row .name { font-weight: 500; }
+  .row .meta { font-size: 13px; color: var(--muted); white-space: nowrap; }
+  .row .price { font: 700 17px Montserrat, sans-serif; min-width: 72px; text-align: right; }
+  .row.head { background: var(--chip); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding: 10px 18px; }
+  .list { max-height: 520px; overflow-y: auto; }
+  .empty { padding: 26px 18px; color: var(--muted); text-align: center; }
+  .count { font-size: 13px; color: var(--muted); margin: 10px 2px 0; }
+  .notes { margin-top: 26px; }
+  .notes h3 { font-size: 17px; margin: 0 0 10px; }
+  .notes ol { margin: 0; padding-left: 20px; color: var(--ink-2); display: grid; gap: 4px; }
+
+  /* Instalar */
+  .install { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px; align-items: start; }
+  @media (max-width: 820px) { .install { grid-template-columns: 1fr; } }
+  ol.big { margin: 0; padding: 0; list-style: none; counter-reset: i; display: grid; gap: 14px; }
+  ol.big li { counter-increment: i; display: grid; grid-template-columns: 38px 1fr; gap: 14px; align-items: start; }
+  ol.big li::before { content: counter(i); display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%;
+    background: var(--ink); color: var(--cream); font: 800 16px Montserrat, sans-serif; }
+  ol.big b { display: block; margin-bottom: 2px; }
+  ol.big span { color: var(--muted); font-size: 15px; }
+  .req { background: var(--orange); color: #1B1B1D; border-radius: var(--radius); padding: 26px; }
+  .req h3 { margin: 0 0 12px; }
+  .req ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+
+  /* FAQ */
+  details { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 20px; margin-bottom: 10px; }
+  section.alt details { background: var(--cream); }
+  summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font: 700 20px Montserrat, sans-serif; color: var(--copper); line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details p { margin: 10px 0 0; color: var(--muted); }
+
+  footer { padding: 36px 0 48px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: center; }
+  footer .brand { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><img src="assets/mark.png" alt="">Taxis Los Altos</a>
+    <nav class="links" aria-label="Secciones">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#tarifas">Tarifas</a>
+      <a href="#instalar">Instalar</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Tetela del Volcán, Morelos</span>
+        <h1>Tu taxi local, desde tu celular.</h1>
+        <p class="lead">Pide un taxi, conoce la tarifa antes de subir y ve llegar a tu chofer en el mapa. Pagas en efectivo, como siempre.</p>
+        <div class="cta-row">
+          <a class="btn btn-dark" id="download-btn" href="#instalar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+            <span id="download-label">Descargar para Android</span>
+          </a>
+          <a class="btn btn-ghost" href="#tarifas">Ver tarifas</a>
+        </div>
+        <p class="note" id="download-note">Gratis · Solo Android · Prueba piloto</p>
+      </div>
+      <img class="hero-logo" src="assets/logo.png" alt="Logo de Taxis Los Altos: una montaña con un camino, un taxi y repartidores">
+    </div>
+  </div>
+
+  <section id="como-funciona">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Cómo funciona</h2>
+        <p>Cuatro pasos, sin registrarte con tarjeta ni pagar nada por adelantado.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Elige tu destino</h3><p>Búscalo por nombre, escógelo del tarifario o marca el punto exacto en el mapa.</p></div>
+        <div class="step"><h3>Ve tu tarifa</h3><p>La app te muestra cuánto cuesta el viaje antes de pedirlo, con las tarifas del sitio.</p></div>
+        <div class="step"><h3>Un chofer acepta</h3><p>Le llega tu solicitud a los taxis cercanos. Ves quién va por ti, su auto y sus placas.</p></div>
+        <div class="step"><h3>Viaja y paga</h3><p>Sigue tu viaje en el mapa y paga en efectivo al llegar. Al final puedes calificar al chofer.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Una app, dos modos</h2>
+        <p>Al entrar eliges si vas a viajar o a manejar.</p>
+      </div>
+      <div class="two">
+        <div class="card">
+          <h3>Pasajeros <span class="tag">Pedir viaje</span></h3>
+          <ul class="checks">
+            <li>Ve cuántos taxis hay disponibles cerca de ti.</li>
+            <li>Elige el punto exacto de recogida y de destino en el mapa.</li>
+            <li>Tarifa clara antes de confirmar, sin sorpresas.</li>
+            <li>Sigue la ubicación de tu chofer en tiempo real.</li>
+            <li>Avisa "voy en camino" y comunícate con tu chofer desde la app.</li>
+            <li>Historial de tus viajes.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Choferes <span class="tag">Manejar</span></h3>
+          <ul class="checks">
+            <li>Recibe solicitudes de pasajeros cercanos.</li>
+            <li>Acepta o rechaza cada viaje antes de salir.</li>
+            <li>Abre la ruta hacia el pasajero o el destino en Google Maps.</li>
+            <li>Marca cada etapa: llegué, inicié y terminé.</li>
+            <li>Consulta tus ganancias del día, la semana y el total.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tarifas">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Tarifas</h2>
+        <p>Tarifas de Radio Taxis Insurgentes 2. Los viajes salen del centro de Tetela; la app calcula la tarifa por ti.</p>
+      </div>
+
+      <div class="rule" aria-label="Servicio local por distancia">
+        <div class="cell"><b>$35</b><span>Hasta 1.2 km</span></div>
+        <div class="cell"><b>$40</b><span>De 1.2 a 2 km</span></div>
+        <div class="cell"><b>+$5</b><span>Por cada medio km extra</span></div>
+        <div class="cell"><b>$50</b><span>Ejemplo: 3 km</span></div>
+      </div>
+
+      <div class="tools">
+        <label class="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="q" type="search" placeholder="Busca un destino: Cuautla, Hueyapan, Alcanfor…" autocomplete="off" aria-label="Buscar destino">
+        </label>
+        <div class="tabs" role="group" aria-label="Tipo de servicio">
+          <button type="button" data-f="todos" aria-pressed="true">Todos</button>
+          <button type="button" data-f="local" aria-pressed="false">Locales</button>
+          <button type="button" data-f="foraneo" aria-pressed="false">Foráneos</button>
+        </div>
+      </div>
+
+      <div class="table">
+        <div class="row head"><span>Destino</span><span>Distancia</span><span style="text-align:right">Tarifa</span></div>
+        <div class="list" id="list"></div>
+      </div>
+      <p class="count" id="count"></p>
+
+      <div class="notes">
+        <h3>Condiciones del sitio</h3>
+        <ol id="notes"></ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="instalar">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Cómo instalar la app</h2>
+        <p>Durante la prueba piloto, la app se instala directamente desde un archivo (APK), sin pasar por Play Store.</p>
+      </div>
+      <div class="install">
+        <ol class="big">
+          <li><div><b>Descarga el archivo</b><span>Toca "Descargar para Android" desde tu celular. Se descarga un archivo que termina en .apk.</span></div></li>
+          <li><div><b>Abre el archivo</b><span>Ábrelo desde la notificación de descarga o desde la carpeta Descargas.</span></div></li>
+          <li><div><b>Permite la instalación</b><span>Android te pedirá permiso para instalar apps de este origen. Actívalo y regresa.</span></div></li>
+          <li><div><b>Si aparece "App no reconocida"</b><span>Es normal en apps que todavía no están en Play Store. Toca "Más detalles" y luego "Instalar de todas formas".</span></div></li>
+          <li><div><b>Entra y elige tu modo</b><span>Inicia sesión con tu cuenta de Google, permite la ubicación y elige si eres pasajero o chofer.</span></div></li>
+        </ol>
+        <div class="req">
+          <h3>Necesitas</h3>
+          <ul>
+            <li>Un celular Android.</li>
+            <li>Internet (datos o wifi).</li>
+            <li>Ubicación (GPS) activada.</li>
+            <li>Una cuenta de Google.</li>
+          </ul>
+          <p class="note" style="margin-top:16px">Las mejoras llegan solas: al abrir la app, se actualiza sin reinstalar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="preguntas">
+    <div class="wrap">
+      <div class="section-head"><h2>Preguntas frecuentes</h2></div>
+      <details><summary>¿Cuánto cuesta usar la app?</summary><p>Descargarla y usarla es gratis. Solo pagas el viaje, en efectivo, con las tarifas del sitio.</p></details>
+      <details><summary>¿Cómo sé cuánto voy a pagar?</summary><p>Antes de pedir el taxi la app te muestra la tarifa. Si eliges un destino del tarifario, se aplica su precio fijo; si no, se calcula por distancia con la regla del servicio local.</p></details>
+      <details><summary>¿Funciona en iPhone?</summary><p>Por ahora no. La prueba piloto es solo para Android.</p></details>
+      <details><summary>¿Por qué no está en Play Store?</summary><p>Estamos en prueba piloto. Mientras tanto se instala desde un archivo APK; más adelante estará en la tienda.</p></details>
+      <details><summary>¿Para qué pide mi ubicación?</summary><p>Para saber dónde recogerte y mostrarte los taxis cercanos. A los choferes, para que el pasajero vea por dónde vienen.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand"><img src="assets/mark.png" alt="" width="24" height="24" style="border-radius:6px">Taxis Los Altos</span>
+    <span>Tetela del Volcán, Morelos · <span id="year"></span></span>
+  </div>
+</footer>
+
+<script>
+  // ==== Pega aquí el enlace de descarga de la APK (Google Drive, Expo, etc.) ====
+  const APK_URL = "";
+  // ===============================================================================
+
+  const DATA = {"notas": ["Todos los servicios son de centro a centro.", "En la noche los servicios locales aumentan $10.", "Todos los servicios foráneos son al doble en la noche.", "Todos los servicios son sin carga y de 1 a 4 personas.", "El tiempo de espera se cobra a $1 el minuto.", "Después de la segunda parada se cobran $5 más por parada.", "Servicio local en vuelta redonda aumenta $15."], "destinos": [{"tipo": "foraneo", "destino": "Tlalmimilulpan", "km": 6, "tarifa": 100}, {"tipo": "foraneo", "destino": "Hueyapan", "km": 8, "tarifa": 100}, {"tipo": "foraneo", "destino": "San Miguel Huepalcalco", "km": 8, "tarifa": 120}, {"tipo": "foraneo", "destino": "Alpanocan", "km": 8, "tarifa": 100}, {"tipo": "foraneo", "destino": "Ocuituco", "km": 8, "tarifa": 100}, {"tipo": "foraneo", "destino": "Tlacotepec", "km": 14, "tarifa": 120}, {"tipo": "foraneo", "destino": "Colonia 5 de Mayo Ocuituco", "km": 8, "tarifa": 120}, {"tipo": "foraneo", "destino": "Hueyapan San Andrés y San Felipe", "km": 10, "tarifa": 120}, {"tipo": "foraneo", "destino": "Ocuituco Hospital", "km": 10, "tarifa": 120}, {"tipo": "foraneo", "destino": "Ocoxaltepec", "km": 10, "tarifa": 160}, {"tipo": "foraneo", "destino": "Jumiltepec", "km": 9, "tarifa": 180}, {"tipo": "foraneo", "destino": "San Francisco Tepango", "km": 13, "tarifa": 180}, {"tipo": "foraneo", "destino": "Santa Cruz Cuatomatitlán", "km": 13, "tarifa": 180}, {"tipo": "foraneo", "destino": "Xochitlán", "km": 15, "tarifa": 180}, {"tipo": "foraneo", "destino": "Zacualpan", "km": 16, "tarifa": 180}, {"tipo": "foraneo", "destino": "Cruz de Lima", "km": 18, "tarifa": 180}, {"tipo": "foraneo", "destino": "Yecapixtla", "km": 18, "tarifa": 200}, {"tipo": "foraneo", "destino": "Temoac", "km": 18, "tarifa": 200}, {"tipo": "foraneo", "destino": "Tecajec", "km": 20, "tarifa": 200}, {"tipo": "foraneo", "destino": "Huecahuaxco", "km": 13, "tarifa": 250}, {"tipo": "foraneo", "destino": "Ecatzingo", "km": 15, "tarifa": 250}, {"tipo": "foraneo", "destino": "San Felipe Cuapexco", "km": 15, "tarifa": 250}, {"tipo": "foraneo", "destino": "Crucero de Yecapixtla", "km": 24, "tarifa": 250}, {"tipo": "foraneo", "destino": "Los Limones", "km": 22, "tarifa": 280}, {"tipo": "foraneo", "destino": "San Juan Amecac", "km": 16, "tarifa": 300}, {"tipo": "foraneo", "destino": "Juan Morales", "km": 19, "tarifa": 300}, {"tipo": "foraneo", "destino": "Normal de Amilcingo", "km": 23, "tarifa": 300}, {"tipo": "foraneo", "destino": "Crucero de Amayuca", "km": 25, "tarifa": 300}, {"tipo": "foraneo", "destino": "Huexca", "km": 27, "tarifa": 300}, {"tipo": "foraneo", "destino": "Peñón", "km": 28, "tarifa": 300}, {"tipo": "foraneo", "destino": "Central de Abastos HC", "km": 29, "tarifa": 300}, {"tipo": "foraneo", "destino": "Atlatlahucan", "km": 30, "tarifa": 300}, {"tipo": "foraneo", "destino": "Achichipico", "km": 28, "tarifa": 300}, {"tipo": "foraneo", "destino": "Jonacatepec", "km": 34, "tarifa": 350}, {"tipo": "foraneo", "destino": "Cuautla", "km": 37, "tarifa": 350}, {"tipo": "foraneo", "destino": "Xalostoc", "km": 40, "tarifa": 400}, {"tipo": "foraneo", "destino": "Oaxtepec", "km": 41, "tarifa": 400}, {"tipo": "foraneo", "destino": "Tepalcingo", "km": 40, "tarifa": 450}, {"tipo": "foraneo", "destino": "Cd. Ayala", "km": 41, "tarifa": 450}, {"tipo": "foraneo", "destino": "Yautepec", "km": 53, "tarifa": 600}, {"tipo": "foraneo", "destino": "Tepetlixpa", "km": 42, "tarifa": 600}, {"tipo": "foraneo", "destino": "Tepoztlán", "km": 62, "tarifa": 650}, {"tipo": "foraneo", "destino": "Ozumba", "km": 48, "tarifa": 700}, {"tipo": "foraneo", "destino": "Amecameca", "km": 60, "tarifa": 800}, {"tipo": "foraneo", "destino": "Atlixco", "km": 60, "tarifa": 800}, {"tipo": "foraneo", "destino": "Axochiapan", "km": 62, "tarifa": 800}, {"tipo": "foraneo", "destino": "Izúcar de Matamoros", "km": 66, "tarifa": 800}, {"tipo": "foraneo", "destino": "Jiutepec", "km": 67, "tarifa": 800}, {"tipo": "foraneo", "destino": "Chalco", "km": 80, "tarifa": 1000}, {"tipo": "foraneo", "destino": "Cuernavaca", "km": 82, "tarifa": 1000}, {"tipo": "foraneo", "destino": "H. Niño Morelense", "km": 100, "tarifa": 1000}, {"tipo": "foraneo", "destino": "Zacatepec", "km": 96, "tarifa": 1200}, {"tipo": "foraneo", "destino": "Atlacholoaya Penal", "km": 107, "tarifa": 1200}, {"tipo": "foraneo", "destino": "Puente de Ixtla", "km": 115, "tarifa": 1500}, {"tipo": "foraneo", "destino": "Aeropuerto CDMX", "km": 112, "tarifa": 1800}, {"tipo": "foraneo", "destino": "AIFA", "km": 154, "tarifa": 3000}, {"tipo": "foraneo", "destino": "Acapulco", "km": 338, "tarifa": 5500}, {"tipo": "local", "destino": "Bado Chorris", "tarifa": 40}, {"tipo": "local", "destino": "Condoro", "tarifa": 40}, {"tipo": "local", "destino": "Pluma Salida", "tarifa": 40}, {"tipo": "local", "destino": "Telesecundaria", "tarifa": 40}, {"tipo": "local", "destino": "Glorieta", "tarifa": 40}, {"tipo": "local", "destino": "Felipe Neri", "tarifa": 40}, {"tipo": "local", "destino": "Pozo", "tarifa": 45}, {"tipo": "local", "destino": "Apanco sobre carretera", "tarifa": 45}, {"tipo": "local", "destino": "Los Arenas", "tarifa": 45}, {"tipo": "local", "destino": "Arriba de Cadeno", "tarifa": 50}, {"tipo": "local", "destino": "Rancho Lozada y Manchas", "tarifa": 50}, {"tipo": "local", "destino": "Rigo", "tarifa": 50}, {"tipo": "local", "destino": "Zacapeshpan René A.", "tarifa": 50}, {"tipo": "local", "destino": "Empacadora Vibradores", "tarifa": 50}, {"tipo": "local", "destino": "Puente de la Virgen Metepec", "tarifa": 50}, {"tipo": "local", "destino": "Rancho Montero", "tarifa": 60}, {"tipo": "local", "destino": "Estocuapa Romelia Mendoza", "tarifa": 60}, {"tipo": "local", "destino": "Col. Paraíso de Metepec", "tarifa": 60}, {"tipo": "local", "destino": "Terrenos Zacapeshpa", "tarifa": 60}, {"tipo": "local", "destino": "Tranca Potrero León", "tarifa": 60}, {"tipo": "local", "destino": "Cancha de Elizondo", "tarifa": 60}, {"tipo": "local", "destino": "Truchas Justino", "tarifa": 70}, {"tipo": "local", "destino": "(Campos) Arturo García", "tarifa": 70}, {"tipo": "local", "destino": "Vidriería Ocuituco", "tarifa": 70}, {"tipo": "local", "destino": "Alcanfor Tanque Alambrado", "tarifa": 80}, {"tipo": "local", "destino": "Tecolotla Puente Entrada", "tarifa": 80}, {"tipo": "local", "destino": "Cruces del Monte", "tarifa": 80}, {"tipo": "local", "destino": "Alcanfor", "tarifa": 80}, {"tipo": "local", "destino": "Truchas Venado", "tarifa": 100}, {"tipo": "local", "destino": "Ahuizoc", "tarifa": 100}, {"tipo": "local", "destino": "Las Canoas del Monte", "tarifa": 100}, {"tipo": "local", "destino": "Tecolotla Sra. de Rosas lado izquierdo", "tarifa": 120}, {"tipo": "local", "destino": "Campo de la Sra. del Taquito", "tarifa": 120}, {"tipo": "local", "destino": "Tecamachalco", "tarifa": 120}, {"tipo": "local", "destino": "Tejocote Monte", "tarifa": 120}, {"tipo": "local", "destino": "Piedra Rajada", "tarifa": 130}, {"tipo": "local", "destino": "Berna Cerrajero", "tarifa": 140}, {"tipo": "local", "destino": "Tecolotla Sra. de Rosas lado derecho", "tarifa": 140}, {"tipo": "local", "destino": "Cuaco", "tarifa": 150}, {"tipo": "local", "destino": "Tenango", "tarifa": 150}, {"tipo": "local", "destino": "Rodeo Monte", "tarifa": 160}, {"tipo": "local", "destino": "Joya Monte", "tarifa": 180}, {"tipo": "local", "destino": "San Isidro", "tarifa": 250}, {"tipo": "local", "destino": "Truchas de las Minas", "tarifa": 300}]};
+
+  const btn = document.getElementById("download-btn");
+  if (APK_URL) {
+    btn.href = APK_URL;
+    btn.setAttribute("rel", "noopener");
+  } else {
+    document.getElementById("download-label").textContent = "Descarga disponible pronto";
+    btn.setAttribute("aria-disabled", "true");
+    document.getElementById("download-note").textContent = "La app está en preparación para la prueba piloto · Solo Android";
+  }
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const notes = document.getElementById("notes");
+  DATA.notas.forEach((n) => { const li = document.createElement("li"); li.textContent = n; notes.appendChild(li); });
+
+  const norm = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  const list = document.getElementById("list");
+  const count = document.getElementById("count");
+  const q = document.getElementById("q");
+  let filtro = "todos";
+
+  function render() {
+    const term = norm(q.value.trim());
+    const rows = DATA.destinos
+      .filter((d) => filtro === "todos" || d.tipo === filtro)
+      .filter((d) => !term || norm(d.destino).includes(term))
+      .sort((a, b) => a.tarifa - b.tarifa || a.destino.localeCompare(b.destino, "es"));
+    list.textContent = "";
+    if (!rows.length) {
+      const e = document.createElement("div");
+      e.className = "empty";
+      e.textContent = "No encontramos ese destino en el tarifario. En la app puedes marcarlo en el mapa y se cobra por distancia.";
+      list.appendChild(e);
+    }
+    const frag = document.createDocumentFragment();
+    rows.forEach((d) => {
+      const r = document.createElement("div");
+      r.className = "row";
+      const n = document.createElement("span"); n.className = "name"; n.textContent = d.destino;
+      const m = document.createElement("span"); m.className = "meta";
+      m.textContent = d.tipo === "foraneo" ? (d.km ? d.km + " km · foráneo" : "foráneo") : "local";
+      const p = document.createElement("span"); p.className = "price"; p.textContent = "$" + d.tarifa.toLocaleString("es-MX");
+      r.append(n, m, p);
+      frag.appendChild(r);
+    });
+    list.appendChild(frag);
+    count.textContent = rows.length + " de " + DATA.destinos.length + " destinos";
+  }
+
+  q.addEventListener("input", render);
+  document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => {
+    filtro = b.dataset.f;
+    document.querySelectorAll(".tabs button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    render();
+  }));
+  render();
+</script>
+</body>
+</html>
