@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Taxis Los Altos — Tu taxi local en Tetela del Volcán</title>
-<meta name="description" content="Pide un taxi en Tetela del Volcán desde tu celular. Ve tu tarifa antes de pedir, sigue a tu chofer en el mapa y paga en efectivo.">
+<title>Taxis Los Altos — Tu taxi local en Los Altos de Morelos</title>
+<meta name="description" content="Pide un taxi en Los Altos de Morelos desde tu celular. Ve tu tarifa antes de pedir, sigue a tu chofer en el mapa y paga en efectivo.">
 <meta name="theme-color" content="#EF9D15">
 <meta property="og:title" content="Taxis Los Altos">
-<meta property="og:description" content="Tu taxi local en Tetela del Volcán, Morelos. Tarifa clara antes de pedir y pago en efectivo.">
+<meta property="og:description" content="Tu taxi local en Los Altos de Morelos. Tarifa clara antes de pedir y pago en efectivo.">
 <meta property="og:image" content="assets/logo.png">
 <link rel="icon" href="assets/mark.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -105,6 +105,11 @@
     border-left: 3px solid var(--orange); border-bottom: 3px solid var(--orange); transform: rotate(-45deg); }
 
   /* Tarifas */
+  .sitio-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-bottom: 16px; }
+  .sitio-head h3 { margin: 0; font-size: 22px; font-weight: 800; }
+  .sitio-tag { font: 600 12px Inter, sans-serif; text-transform: uppercase; letter-spacing: 0.08em;
+    background: var(--chip); color: var(--copper); padding: 4px 10px; border-radius: 999px; }
+  .sitio-meta { color: var(--muted); font-size: 15px; }
   .rule { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
   .rule .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
   .rule .cell b { display: block; font: 800 26px Montserrat, sans-serif; }
@@ -179,9 +184,9 @@
   <div class="hero">
     <div class="wrap">
       <div>
-        <span class="eyebrow">Tetela del Volcán, Morelos</span>
+        <span class="eyebrow">Los Altos de Morelos</span>
         <h1>Tu taxi local, desde tu celular.</h1>
-        <p class="lead">Pide un taxi, conoce la tarifa antes de subir y ve llegar a tu chofer en el mapa. Pagas en efectivo, como siempre.</p>
+        <p class="lead">Taxis de los sitios de tu región en una sola app. Pide un taxi, conoce la tarifa antes de subir y ve llegar a tu chofer en el mapa. Pagas en efectivo, como siempre.</p>
         <div class="cta-row">
           <a class="btn btn-dark" id="download-btn" href="#instalar">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
@@ -246,7 +251,13 @@
     <div class="wrap">
       <div class="section-head">
         <h2>Tarifas</h2>
-        <p>Tarifas de Radio Taxis Insurgentes 2. Los viajes salen del centro de Tetela; la app calcula la tarifa por ti.</p>
+        <p>Cada sitio de taxis tiene sus propias tarifas y la app las calcula por ti. Pronto se sumarán más sitios de Los Altos de Morelos.</p>
+      </div>
+
+      <div class="sitio-head">
+        <span class="sitio-tag">Sitio</span>
+        <h3>Radio Taxis Insurgentes 2</h3>
+        <span class="sitio-meta">Tetela del Volcán · los viajes salen del centro de Tetela</span>
       </div>
 
       <div class="rule" aria-label="Servicio local por distancia">
@@ -319,13 +330,13 @@
 <footer>
   <div class="wrap">
     <span class="brand"><img src="assets/mark.png" alt="" width="24" height="24" style="border-radius:6px">Taxis Los Altos</span>
-    <span>Tetela del Volcán, Morelos · <span id="year"></span></span>
+    <span>Los Altos de Morelos · <span id="year"></span></span>
   </div>
 </footer>
 
 <script>
   // ==== Pega aquí el enlace de descarga de la APK (Google Drive, Expo, etc.) ====
-  const APK_URL = "https://drive.google.com/file/d/15keRbeTdbVrOVBJNQiqBiadZ2pWyv5gZ/view?usp=sharing";
+  const APK_URL = "https://drive.google.com/file/d/1MENem_oPh8leeoRMLiKKnnNSvxTVPrOa/view?usp=sharing";
   // ===============================================================================
 
   const DATA = {"destinos": [{"tipo": "foraneo", "destino": "Tlalmimilulpan", "km": 6, "tarifa": 100}, {"tipo": "foraneo", "destino": "Hueyapan", "km": 8, "tarifa": 100}, {"tipo": "foraneo", "destino": "San Miguel Huepalcalco", "km": 8, "tarifa": 120}, {"tipo": "foraneo", "destino": "Alpanocan", "km": 8, "tarifa": 100}, {"tipo": "foraneo", "destino": "Ocuituco", "km": 8, "tarifa": 100}, {"tipo": "foraneo", "destino": "Tlacotepec", "km": 14, "tarifa": 120}, {"tipo": "foraneo", "destino": "Colonia 5 de Mayo Ocuituco", "km": 8, "tarifa": 120}, {"tipo": "foraneo", "destino": "Hueyapan San Andrés y San Felipe", "km": 10, "tarifa": 120}, {"tipo": "foraneo", "destino": "Ocuituco Hospital", "km": 10, "tarifa": 120}, {"tipo": "foraneo", "destino": "Ocoxaltepec", "km": 10, "tarifa": 160}, {"tipo": "foraneo", "destino": "Jumiltepec", "km": 9, "tarifa": 180}, {"tipo": "foraneo", "destino": "San Francisco Tepango", "km": 13, "tarifa": 180}, {"tipo": "foraneo", "destino": "Santa Cruz Cuatomatitlán", "km": 13, "tarifa": 180}, {"tipo": "foraneo", "destino": "Xochitlán", "km": 15, "tarifa": 180}, {"tipo": "foraneo", "destino": "Zacualpan", "km": 16, "tarifa": 180}, {"tipo": "foraneo", "destino": "Cruz de Lima", "km": 18, "tarifa": 180}, {"tipo": "foraneo", "destino": "Yecapixtla", "km": 18, "tarifa": 200}, {"tipo": "foraneo", "destino": "Temoac", "km": 18, "tarifa": 200}, {"tipo": "foraneo", "destino": "Tecajec", "km": 20, "tarifa": 200}, {"tipo": "foraneo", "destino": "Huecahuaxco", "km": 13, "tarifa": 250}, {"tipo": "foraneo", "destino": "Ecatzingo", "km": 15, "tarifa": 250}, {"tipo": "foraneo", "destino": "San Felipe Cuapexco", "km": 15, "tarifa": 250}, {"tipo": "foraneo", "destino": "Crucero de Yecapixtla", "km": 24, "tarifa": 250}, {"tipo": "foraneo", "destino": "Los Limones", "km": 22, "tarifa": 280}, {"tipo": "foraneo", "destino": "San Juan Amecac", "km": 16, "tarifa": 300}, {"tipo": "foraneo", "destino": "Juan Morales", "km": 19, "tarifa": 300}, {"tipo": "foraneo", "destino": "Normal de Amilcingo", "km": 23, "tarifa": 300}, {"tipo": "foraneo", "destino": "Crucero de Amayuca", "km": 25, "tarifa": 300}, {"tipo": "foraneo", "destino": "Huexca", "km": 27, "tarifa": 300}, {"tipo": "foraneo", "destino": "Peñón", "km": 28, "tarifa": 300}, {"tipo": "foraneo", "destino": "Central de Abastos HC", "km": 29, "tarifa": 300}, {"tipo": "foraneo", "destino": "Atlatlahucan", "km": 30, "tarifa": 300}, {"tipo": "foraneo", "destino": "Achichipico", "km": 28, "tarifa": 300}, {"tipo": "foraneo", "destino": "Jonacatepec", "km": 34, "tarifa": 350}, {"tipo": "foraneo", "destino": "Cuautla", "km": 37, "tarifa": 350}, {"tipo": "foraneo", "destino": "Xalostoc", "km": 40, "tarifa": 400}, {"tipo": "foraneo", "destino": "Oaxtepec", "km": 41, "tarifa": 400}, {"tipo": "foraneo", "destino": "Tepalcingo", "km": 40, "tarifa": 450}, {"tipo": "foraneo", "destino": "Cd. Ayala", "km": 41, "tarifa": 450}, {"tipo": "foraneo", "destino": "Yautepec", "km": 53, "tarifa": 600}, {"tipo": "foraneo", "destino": "Tepetlixpa", "km": 42, "tarifa": 600}, {"tipo": "foraneo", "destino": "Tepoztlán", "km": 62, "tarifa": 650}, {"tipo": "foraneo", "destino": "Ozumba", "km": 48, "tarifa": 700}, {"tipo": "foraneo", "destino": "Amecameca", "km": 60, "tarifa": 800}, {"tipo": "foraneo", "destino": "Atlixco", "km": 60, "tarifa": 800}, {"tipo": "foraneo", "destino": "Axochiapan", "km": 62, "tarifa": 800}, {"tipo": "foraneo", "destino": "Izúcar de Matamoros", "km": 66, "tarifa": 800}, {"tipo": "foraneo", "destino": "Jiutepec", "km": 67, "tarifa": 800}, {"tipo": "foraneo", "destino": "Chalco", "km": 80, "tarifa": 1000}, {"tipo": "foraneo", "destino": "Cuernavaca", "km": 82, "tarifa": 1000}, {"tipo": "foraneo", "destino": "H. Niño Morelense", "km": 100, "tarifa": 1000}, {"tipo": "foraneo", "destino": "Zacatepec", "km": 96, "tarifa": 1200}, {"tipo": "foraneo", "destino": "Atlacholoaya Penal", "km": 107, "tarifa": 1200}, {"tipo": "foraneo", "destino": "Puente de Ixtla", "km": 115, "tarifa": 1500}, {"tipo": "foraneo", "destino": "Aeropuerto CDMX", "km": 112, "tarifa": 1800}, {"tipo": "foraneo", "destino": "AIFA", "km": 154, "tarifa": 3000}, {"tipo": "foraneo", "destino": "Acapulco", "km": 338, "tarifa": 5500}, {"tipo": "local", "destino": "Bado Chorris", "tarifa": 40}, {"tipo": "local", "destino": "Condoro", "tarifa": 40}, {"tipo": "local", "destino": "Pluma Salida", "tarifa": 40}, {"tipo": "local", "destino": "Telesecundaria", "tarifa": 40}, {"tipo": "local", "destino": "Glorieta", "tarifa": 40}, {"tipo": "local", "destino": "Felipe Neri", "tarifa": 40}, {"tipo": "local", "destino": "Pozo", "tarifa": 45}, {"tipo": "local", "destino": "Apanco sobre carretera", "tarifa": 45}, {"tipo": "local", "destino": "Los Arenas", "tarifa": 45}, {"tipo": "local", "destino": "Arriba de Cadeno", "tarifa": 50}, {"tipo": "local", "destino": "Rancho Lozada y Manchas", "tarifa": 50}, {"tipo": "local", "destino": "Rigo", "tarifa": 50}, {"tipo": "local", "destino": "Zacapeshpan René A.", "tarifa": 50}, {"tipo": "local", "destino": "Empacadora Vibradores", "tarifa": 50}, {"tipo": "local", "destino": "Puente de la Virgen Metepec", "tarifa": 50}, {"tipo": "local", "destino": "Rancho Montero", "tarifa": 60}, {"tipo": "local", "destino": "Estocuapa Romelia Mendoza", "tarifa": 60}, {"tipo": "local", "destino": "Col. Paraíso de Metepec", "tarifa": 60}, {"tipo": "local", "destino": "Terrenos Zacapeshpa", "tarifa": 60}, {"tipo": "local", "destino": "Tranca Potrero León", "tarifa": 60}, {"tipo": "local", "destino": "Cancha de Elizondo", "tarifa": 60}, {"tipo": "local", "destino": "Truchas Justino", "tarifa": 70}, {"tipo": "local", "destino": "(Campos) Arturo García", "tarifa": 70}, {"tipo": "local", "destino": "Vidriería Ocuituco", "tarifa": 70}, {"tipo": "local", "destino": "Alcanfor Tanque Alambrado", "tarifa": 80}, {"tipo": "local", "destino": "Tecolotla Puente Entrada", "tarifa": 80}, {"tipo": "local", "destino": "Cruces del Monte", "tarifa": 80}, {"tipo": "local", "destino": "Alcanfor", "tarifa": 80}, {"tipo": "local", "destino": "Truchas Venado", "tarifa": 100}, {"tipo": "local", "destino": "Ahuizoc", "tarifa": 100}, {"tipo": "local", "destino": "Las Canoas del Monte", "tarifa": 100}, {"tipo": "local", "destino": "Tecolotla Sra. de Rosas lado izquierdo", "tarifa": 120}, {"tipo": "local", "destino": "Campo de la Sra. del Taquito", "tarifa": 120}, {"tipo": "local", "destino": "Tecamachalco", "tarifa": 120}, {"tipo": "local", "destino": "Tejocote Monte", "tarifa": 120}, {"tipo": "local", "destino": "Piedra Rajada", "tarifa": 130}, {"tipo": "local", "destino": "Berna Cerrajero", "tarifa": 140}, {"tipo": "local", "destino": "Tecolotla Sra. de Rosas lado derecho", "tarifa": 140}, {"tipo": "local", "destino": "Cuaco", "tarifa": 150}, {"tipo": "local", "destino": "Tenango", "tarifa": 150}, {"tipo": "local", "destino": "Rodeo Monte", "tarifa": 160}, {"tipo": "local", "destino": "Joya Monte", "tarifa": 180}, {"tipo": "local", "destino": "San Isidro", "tarifa": 250}, {"tipo": "local", "destino": "Truchas de las Minas", "tarifa": 300}]};
